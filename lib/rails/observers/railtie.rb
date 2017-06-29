@@ -26,6 +26,8 @@ module Rails
       end
 
       config.after_initialize do |app|
+        self.instantiate_observers
+
         ActiveSupport.on_load(:active_record) do
           # Rails 5.1 forward-compat. AD::R is deprecated to AS::R in Rails 5.
           reloader = defined?(ActiveSupport::Reloader) ? ActiveSupport::Reloader : ActionDispatch::Reloader
